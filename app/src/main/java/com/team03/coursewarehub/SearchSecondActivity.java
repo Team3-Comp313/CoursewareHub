@@ -25,19 +25,16 @@ public class SearchSecondActivity extends Activity {
         final BootstrapButton btnHandouts = (BootstrapButton) findViewById(R.id.btnHandouts);
         final BootstrapButton btnExamples = (BootstrapButton) findViewById(R.id.btnExamples);
 
-        // Fire Base
+        // Connection to firebase
         Firebase.setAndroidContext(this);
 
         String baseurl = "https://team03-coursewarehub.firebaseio.com/";
 
-        // 1. get passed intent
+        // move to next activity
         Intent intent = getIntent();
         final String courseTitle = intent.getStringExtra("courseTitle");
-
         setTitle(courseTitle);
-
         final ImageView imgHeader = (ImageView) findViewById(R.id.imgHeader);
-
         Firebase ref = new Firebase(baseurl + courseTitle);
 
         ref.addChildEventListener(new ChildEventListener() {

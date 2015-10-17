@@ -32,9 +32,9 @@ public class SearchActivity extends Activity {
     int textlength = 0;
 
     // Listview Data
-    String courses[] = {"Java (The New Boston)", "Java (Standford)", "Android (The New Boston)", "HTC Sense", "HTC Sensation XE",
-            "iPhone 4S", "Samsung Galaxy Note 800",
-            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
+    String courses[] = {"Java (The New Boston)", "Java (Standford)", "Android (The New Boston)", "Android(Utom)", "Angular",
+            "C#", "Http",
+            "Sql", "NoSql", "Dataware", "MacBook Pro"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
