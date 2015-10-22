@@ -46,6 +46,14 @@ public class SearchSecondActivity extends Activity {
                         btnYoutube.setVisibility(View.GONE);
                     } else {
                         //move to next activity for list of all videos
+                        btnYoutube.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(getApplicationContext(), SearchSecondVideoActivity.class);
+                                i.putExtra("courseTitle", courseTitle);
+                                startActivity(i);
+                            }
+                        });
                     }
                 }
                 if (dataSnapshot.getKey().toString() == "Image") {
