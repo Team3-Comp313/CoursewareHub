@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">CoursewareHub</string>
+    <string name="app_name">Courseware Hub</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_search">Search Activity</string>
+    <string name="title_activity_search_second">SearchSecondActivity</string>
 </resources>
