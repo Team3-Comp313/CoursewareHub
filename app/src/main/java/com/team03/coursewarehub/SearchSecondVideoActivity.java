@@ -3,6 +3,8 @@ package com.team03.coursewarehub;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -17,30 +19,18 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SearchSecondVideoActivity extends Activity {
 
+    // Listview Data
+    List<String> sampleVideo = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_second_video);
-
-        // ListView
-        ListView lv = (ListView) findViewById(R.id.list_view);
-
-        ArrayAdapter<String> adapter;
-
-        // ArrayList for Listview
-        ArrayList<String> sampleVideoList;
-
-        // Listview Data
-        String sampleVideo[] = {"Dummy1", "Dummy2", "Dummy3", "Dummy4", "Dummy5",
-                "Dummy6", "Dummy7", "Dummy8", "Dummy9", "Dummy10", "Dummy11"};
-
-        sampleVideoList = new ArrayList<String>(Arrays.asList(sampleVideo));
-        // Adding items to listview
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, sampleVideo);
-        lv.setAdapter(adapter);
 
         // Connection to firebase
         Firebase.setAndroidContext(this);
@@ -62,9 +52,12 @@ public class SearchSecondVideoActivity extends Activity {
                     // Assigning Image to Image view
                     UrlImageViewHelper.setUrlDrawable(imgHeader, tempHeaderImage);
                 }
-                if (dataSnapshot.getKey().toString() == "Video") {
-                    final String video = dataSnapshot.getValue().toString();
-                    /* display list to listview.  */
+                if (dataSnapshot.getKey().toString() == "Videos") {
+                    // display list to listview.
+                   for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                       sampleVideo.add(snapshot.child("Name").getValue().toString());
+                       //System.out.println(snapshot.child("Url").getValue());
+                   }
                 }
             }
 
@@ -89,7 +82,21 @@ public class SearchSecondVideoActivity extends Activity {
             }
 
         });
-        }
+
+        // ListView
+        ListView lv = (ListView) findViewById(R.id.list_view);
+
+        // ArrayList for Listview
+        ArrayList<String> sampleVideoList;
+
+        ArrayAdapter<String> adapter;
+
+        sampleVideoList = new ArrayList<String>(sampleVideo);
+        // Adding items to listview
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, sampleVideo);
+        lv.setAdapter(adapter);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

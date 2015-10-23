@@ -40,7 +40,7 @@ public class SearchSecondActivity extends Activity {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (dataSnapshot.getKey().toString() == "Video") {
+                if (dataSnapshot.getKey().toString() == "Videos") {
                     final String video = dataSnapshot.getValue().toString();
                     if (video.equals("")) {
                         btnYoutube.setVisibility(View.GONE);
