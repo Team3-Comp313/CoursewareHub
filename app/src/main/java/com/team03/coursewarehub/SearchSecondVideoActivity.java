@@ -104,6 +104,7 @@ public class SearchSecondVideoActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), VideoDisplay.class);
                 i.putExtra("videoUrl", videoUrl.get(position));
+                i.putExtra("courseTitle", courseTitle);
                 startActivity(i);
             }
         });
@@ -111,7 +112,7 @@ public class SearchSecondVideoActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search_second_you_tube, menu);
         return true;
