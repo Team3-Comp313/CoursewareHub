@@ -29,6 +29,8 @@
             android:name=".SearchSecondVideoActivity"
             android:label="@string/title_activity_search_second_you_tube" >
         </activity>
+        <activity android:name=".VideoDisplay" >
+        </activity>
     </application>
 
 </manifest>

@@ -7,6 +7,8 @@ import android.os.Debug;
 import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,6 +27,7 @@ public class SearchSecondVideoActivity extends Activity {
 
     // Listview Data
     List<String> sampleVideo = new ArrayList<String>();
+    List<String> videoUrl = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class SearchSecondVideoActivity extends Activity {
                     // display list to listview.
                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                        sampleVideo.add(snapshot.child("Name").getValue().toString());
-                       //System.out.println(snapshot.child("Url").getValue());
+                       videoUrl.add(snapshot.child("Url").getValue().toString());
                    }
                 }
             }
@@ -95,6 +98,15 @@ public class SearchSecondVideoActivity extends Activity {
         // Adding items to listview
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, sampleVideo);
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), VideoDisplay.class);
+                i.putExtra("videoUrl", videoUrl.get(position));
+                startActivity(i);
+            }
+        });
 
     }
 
