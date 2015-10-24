@@ -13,6 +13,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import java.util.regex.*;
 
 public class VideoDisplay extends Activity {
 
@@ -35,9 +36,10 @@ public class VideoDisplay extends Activity {
 
         //get url from previous activity
         final String url = intent.getStringExtra("videoUrl");
+        String videoId = extractYTId(url);
 
         final TextView tv = (TextView) findViewById(R.id.textView);
-        tv.setText(url);
+        tv.setText(videoId);
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -92,5 +94,19 @@ public class VideoDisplay extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String extractYTId(String ytUrl) {
+        //String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|watch\\?v%3D|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
+
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(ytUrl);
+
+        if(matcher.find()){
+            return matcher.group();
+        }
+        else
+            return "";
     }
 }
