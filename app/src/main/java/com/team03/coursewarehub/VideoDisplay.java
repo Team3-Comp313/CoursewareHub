@@ -15,7 +15,19 @@ import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import java.util.regex.*;
 
-public class VideoDisplay extends Activity {
+import android.widget.Toast;
+
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.ErrorReason;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
+    private static final int RECOVERY_DIALOG_REQUEST = 10;
+    public static final String API_KEY = "AIzaSyC29Cn2stiksjnP33HeegXMNCCAoMRzgnc";
+    String videoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +48,8 @@ public class VideoDisplay extends Activity {
 
         //get url from previous activity
         final String url = intent.getStringExtra("videoUrl");
-        String videoId = extractYTId(url);
+        videoId = extractYTId(url);
 
-        final TextView tv = (TextView) findViewById(R.id.textView);
-        tv.setText(videoId);
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -72,28 +82,9 @@ public class VideoDisplay extends Activity {
             }
 
         });
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search_second_you_tube, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView.initialize(API_KEY, this);
     }
 
     public String extractYTId(String ytUrl) {
@@ -108,5 +99,145 @@ public class VideoDisplay extends Activity {
         }
         else
             return "";
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                        YouTubeInitializationResult errorReason) {
+        if (errorReason.isUserRecoverableError()) {
+            errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
+        } else {
+            String errorMessage = String.format("YouTube Error (%1$s)",
+                    errorReason.toString());
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onInitializationSuccess(Provider provider,
+                                        YouTubePlayer player, boolean wasRestored) {
+        if (!wasRestored) {
+            player.cueVideo(videoId);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RECOVERY_DIALOG_REQUEST) {
+            // Retry initialization if user performed a recovery action
+            getYouTubePlayerProvider().initialize(API_KEY, this);
+        }
+    }
+
+    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+        return (YouTubePlayerView) findViewById(R.id.youtube_view);
+    }
+
+    private class FullScreenListener implements YouTubePlayer.OnFullscreenListener{
+
+        @Override
+        public void onFullscreen(boolean isFullscreen) {
+            //Called when fullscreen mode changes.
+
+        }
+
+    }
+
+    private class PlaybackListener implements YouTubePlayer.PlaybackEventListener{
+
+        @Override
+        public void onBuffering(boolean isBuffering) {
+            // Called when buffering starts or ends.
+
+        }
+
+        @Override
+        public void onPaused() {
+            // Called when playback is paused, either due to pause() or user action.
+
+        }
+
+        @Override
+        public void onPlaying() {
+            // Called when playback starts, either due to play() or user action.
+
+        }
+
+        @Override
+        public void onSeekTo(int newPositionMillis) {
+            // Called when a jump in playback position occurs,
+            //either due to the user scrubbing or a seek method being called
+
+        }
+
+        @Override
+        public void onStopped() {
+            // Called when playback stops for a reason other than being paused.
+
+        }
+
+    }
+
+    private class PlayerStateListener implements YouTubePlayer.PlayerStateChangeListener{
+
+        @Override
+        public void onAdStarted() {
+            // Called when playback of an advertisement starts.
+
+        }
+
+        @Override
+        public void onError(ErrorReason reason) {
+            // Called when an error occurs.
+
+        }
+
+        @Override
+        public void onLoaded(String arg0) {
+            // Called when a video has finished loading.
+
+        }
+
+        @Override
+        public void onLoading() {
+            // Called when the player begins loading a video and is not ready to accept commands affecting playback
+
+        }
+
+        @Override
+        public void onVideoEnded() {
+            // Called when the video reaches its end.
+
+        }
+
+        @Override
+        public void onVideoStarted() {
+            // Called when playback of the video starts.
+
+        }
+
+    }
+
+    private class PlayListListener implements YouTubePlayer.PlaylistEventListener{
+
+        @Override
+        public void onNext() {
+            // Called before the player starts loading the next video in the playlist.
+
+        }
+
+        @Override
+        public void onPlaylistEnded() {
+            // Called when the last video in the playlist has ended.
+
+        }
+
+        @Override
+        public void onPrevious() {
+            // Called before the player starts loading the previous video in the playlist.
+
+        }
+
     }
 }
