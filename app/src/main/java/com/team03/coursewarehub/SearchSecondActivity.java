@@ -6,6 +6,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.team03.coursewarehub.Youtube.VideoListActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -49,7 +50,7 @@ public class SearchSecondActivity extends Activity {
                         btnYoutube.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {
-                                Intent i = new Intent(getApplicationContext(), SearchSecondVideoActivity.class);
+                                Intent i = new Intent(getApplicationContext(), VideoListActivity.class);
                                 i.putExtra("courseTitle", courseTitle);
                                 startActivity(i);
                             }

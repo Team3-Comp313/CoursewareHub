@@ -1,10 +1,8 @@
-package com.team03.coursewarehub;
+package com.team03.coursewarehub.Youtube;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +16,12 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.team03.coursewarehub.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class SearchSecondVideoActivity extends Activity {
+public class VideoListActivity extends Activity {
 
     // Listview Data
     List<String> sampleVideo = new ArrayList<String>();
@@ -104,6 +102,7 @@ public class SearchSecondVideoActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), VideoDisplay.class);
                 i.putExtra("videoUrl", videoUrl.get(position));
+                i.putExtra("videoName", sampleVideo.get(position));
                 i.putExtra("courseTitle", courseTitle);
                 startActivity(i);
             }

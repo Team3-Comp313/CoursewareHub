@@ -1,4 +1,4 @@
-package com.team03.coursewarehub;
+package com.team03.coursewarehub.Youtube;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.ErrorReason;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.team03.coursewarehub.R;
 
 public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private static final int RECOVERY_DIALOG_REQUEST = 10;
@@ -49,6 +50,13 @@ public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.O
         //get url from previous activity
         final String url = intent.getStringExtra("videoUrl");
         videoId = extractYTId(url);
+
+        //Get video name from previous activity
+        final String name = intent.getStringExtra("videoName");
+
+        //find textview
+        final TextView tv = (TextView)findViewById(R.id.textView);
+        tv.setText(name);
 
 
         ref.addChildEventListener(new ChildEventListener() {

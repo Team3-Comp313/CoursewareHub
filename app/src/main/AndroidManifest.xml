@@ -26,10 +26,10 @@
             android:name=".SearchSecondActivity"
             android:label="@string/title_activity_search_second" />
         <activity
-            android:name=".SearchSecondVideoActivity"
+            android:name=".Youtube.VideoListActivity"
             android:label="@string/title_activity_search_second_you_tube" >
         </activity>
-        <activity android:name=".VideoDisplay" >
+        <activity android:name=".Youtube.VideoDisplay" >
         </activity>
     </application>
 
