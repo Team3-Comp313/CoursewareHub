@@ -49,7 +49,8 @@ public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.O
 
         //get url from previous activity
         final String url = intent.getStringExtra("videoUrl");
-        videoId = extractYTId(url);
+        //videoId = extractYTId(url);
+        videoId = url;
 
         //Get video name from previous activity
         final String name = intent.getStringExtra("videoName");
@@ -95,19 +96,19 @@ public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.O
         youTubeView.initialize(API_KEY, this);
     }
 
-    public String extractYTId(String ytUrl) {
-        //String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
-        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|watch\\?v%3D|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
-
-        Pattern compiledPattern = Pattern.compile(pattern);
-        Matcher matcher = compiledPattern.matcher(ytUrl);
-
-        if(matcher.find()){
-            return matcher.group();
-        }
-        else
-            return "";
-    }
+//    public String extractYTId(String ytUrl) {
+//        //String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+//        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|watch\\?v%3D|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
+//
+//        Pattern compiledPattern = Pattern.compile(pattern);
+//        Matcher matcher = compiledPattern.matcher(ytUrl);
+//
+//        if(matcher.find()){
+//            return matcher.group();
+//        }
+//        else
+//            return "";
+//    }
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider,
