@@ -83,7 +83,15 @@ public class SearchSecondActivity extends Activity {
                     if (examples.equals("")) {
                         btnExamples.setVisibility(View.GONE);
                     } else {
-                        //move to next activity for list of all videos
+                        //move to next activity for list of all examples
+                        btnExamples.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(getApplicationContext(), SearchSecondExampleActivity.class);
+                                i.putExtra("courseTitle", courseTitle);
+                                startActivity(i);
+                            }
+                        });
                     }
                 }
             }
