@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".Youtube.VideoDisplay" >
         </activity>
-        <activity android:name=".SearchSecondExampleActivity" >
+        <activity android:name=".ExampleListActivity" >
         </activity>
     </application>
 

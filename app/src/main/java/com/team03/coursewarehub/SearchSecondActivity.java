@@ -87,7 +87,7 @@ public class SearchSecondActivity extends Activity {
                         btnExamples.setOnClickListener(new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {
-                                Intent i = new Intent(getApplicationContext(), SearchSecondExampleActivity.class);
+                                Intent i = new Intent(getApplicationContext(), ExampleListActivity.class);
                                 i.putExtra("courseTitle", courseTitle);
                                 startActivity(i);
                             }
