@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,6 +17,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.team03.coursewarehub.R;
+import com.team03.coursewarehub.Youtube.VideoDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,17 +98,16 @@ public class AssignmentListActivity extends Activity {
         adapter = new ArrayAdapter<String>(this, R.layout.main_search_list_item, R.id.product_name, sampleAssignments);
         lv.setAdapter(adapter);
 
-        /*
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), VideoDisplay.class);
-                i.putExtra("AssignmentUrl", AssignmentUrl.get(position));
-                i.putExtra("exampleName", sampleAssignments.get(position));
+                Intent i = new Intent(getApplicationContext(), AssignmentView.class);
+                i.putExtra("assignmentUrl", AssignmentUrl.get(position));
+                i.putExtra("assignmentName", sampleAssignments.get(position));
                 i.putExtra("courseTitle", courseTitle);
                 startActivity(i);
             }
         });
-        */
+
     }
 }
