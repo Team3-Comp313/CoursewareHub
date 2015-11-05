@@ -30,7 +30,10 @@
         </activity>
         <activity android:name=".Assignments.AssignmentListActivity" >
         </activity>
-
+        <activity
+            android:name=".Handouts.HandoutListActivity"
+            android:label="@string/title_activity_handout_list" >
+        </activity>
     </application>
 
 </manifest>

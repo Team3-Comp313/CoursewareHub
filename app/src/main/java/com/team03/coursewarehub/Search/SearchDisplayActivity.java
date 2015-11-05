@@ -16,6 +16,7 @@ import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.team03.coursewarehub.Assignments.AssignmentListActivity;
 import com.team03.coursewarehub.Example.ExampleListActivity;
+import com.team03.coursewarehub.Handouts.HandoutListActivity;
 import com.team03.coursewarehub.R;
 import com.team03.coursewarehub.Youtube.VideoListActivity;
 
@@ -90,6 +91,14 @@ public class SearchDisplayActivity extends Activity {
                         btnHandouts.setVisibility(View.GONE);
                     } else {
                         //move to next activity for list of all videos
+                        btnHandouts.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(getApplicationContext(), HandoutListActivity.class);
+                                i.putExtra("courseTitle", courseTitle);
+                                startActivity(i);
+                            }
+                        });
                     }
                 }
                 if (dataSnapshot.getKey().toString() == "Examples") {
