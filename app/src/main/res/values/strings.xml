@@ -6,4 +6,5 @@
     <string name="title_activity_search">Search Activity</string>
     <string name="title_activity_search_second">SearchSecondActivity</string>
     <string name="title_activity_search_second_you_tube">SearchSecondYouTubeActivity</string>
+    <string name="title_activity_assignment_list">AssignmentListActivity</string>
 </resources>

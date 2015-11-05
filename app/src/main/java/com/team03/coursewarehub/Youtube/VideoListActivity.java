@@ -31,7 +31,7 @@ public class VideoListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_second_video);
+        setContentView(R.layout.activity_video_list);
 
         // Connection to firebase
         Firebase.setAndroidContext(this);
@@ -85,7 +85,7 @@ public class VideoListActivity extends Activity {
         });
 
         // ListView
-        ListView lv = (ListView) findViewById(R.id.list_view);
+        ListView lv = (ListView) findViewById(R.id.video_list_view);
 
         // ArrayList for Listview
         ArrayList<String> sampleVideoList;
@@ -94,7 +94,7 @@ public class VideoListActivity extends Activity {
 
         sampleVideoList = new ArrayList<String>(sampleVideo);
         // Adding items to listview
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.product_name, sampleVideo);
+        adapter = new ArrayAdapter<String>(this, R.layout.main_search_list_item, R.id.product_name, sampleVideo);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
