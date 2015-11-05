@@ -26,6 +26,7 @@ public class SearchSecondActivity extends Activity {
         final BootstrapButton btnHandouts = (BootstrapButton) findViewById(R.id.btnHandouts);
         final BootstrapButton btnExamples = (BootstrapButton) findViewById(R.id.btnExamples);
 
+
         // Connection to firebase
         Firebase.setAndroidContext(this);
 
@@ -75,7 +76,14 @@ public class SearchSecondActivity extends Activity {
                     if (handouts.equals("")) {
                         btnHandouts.setVisibility(View.GONE);
                     } else {
-                        //move to next activity for list of all videos
+                        btnHandouts.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent i= new Intent(getApplicationContext(),HandoutActivity.class);
+                                i.putExtra("courseTitle", courseTitle);
+                                startActivity(i);
+                            }
+                        });
                     }
                 }
                 if (dataSnapshot.getKey().toString() == "Examples") {

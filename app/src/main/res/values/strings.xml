@@ -6,4 +6,7 @@
     <string name="title_activity_search">Search Activity</string>
     <string name="title_activity_search_second">SearchSecondActivity</string>
     <string name="title_activity_search_second_you_tube">SearchSecondYouTubeActivity</string>
+    <string name="title_activity_handout">HandoutActivity</string>
+    <string name="title_activity_handout_list">HandoutListActivity</string>
+    <string name="title_activity_handouts">HandoutsActivity</string>
 </resources>

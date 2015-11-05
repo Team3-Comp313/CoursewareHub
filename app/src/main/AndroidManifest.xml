@@ -33,6 +33,10 @@
         </activity>
         <activity android:name=".ExampleListActivity" >
         </activity>
+        <activity
+            android:name=".HandoutActivity"
+            android:label="@string/title_activity_handout" >
+        </activity>
     </application>
 
 </manifest>
