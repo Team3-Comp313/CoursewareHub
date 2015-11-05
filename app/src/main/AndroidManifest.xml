@@ -26,6 +26,7 @@
             android:label="@string/title_activity_search_second" />
         <activity android:name=".Youtube.VideoDisplay" >
         </activity>
+        <activity android:name=".Youtube.VideoListActivity" />
         <activity android:name=".Example.ExampleListActivity" >
         </activity>
         <activity android:name=".Assignments.AssignmentListActivity" >
