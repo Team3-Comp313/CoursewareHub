@@ -49,7 +49,13 @@ public class ExampleListActivity extends Activity {
                     // Assigning Image to Image view
                     UrlImageViewHelper.setUrlDrawable(imgHeader, tempHeaderImage);
                 }
-
+                if (dataSnapshot.getKey().toString() == "Examples") {
+                    // display list to listview.
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        sampleExample.add(snapshot.child("Name").getValue().toString());
+                        exampleUrl.add(snapshot.child("Url").getValue().toString());
+                    }
+                }
             }
 
             @Override
