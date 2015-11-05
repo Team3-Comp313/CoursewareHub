@@ -1,6 +1,7 @@
 package com.team03.coursewarehub;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.team03.coursewarehub.Search.SearchListActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent activityCourse = new Intent(MainActivity.this,
-                        SearchActivity.class);
+                        SearchListActivity.class);
                 MainActivity.this.startActivity(activityCourse);
                 finish();
             }
