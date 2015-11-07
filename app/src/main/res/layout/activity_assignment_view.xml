@@ -33,6 +33,11 @@
             android:textSize="40sp"
             android:layout_gravity="center_horizontal" />
 
+        <WebView
+            android:id="@+id/assignmentViewer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
     </LinearLayout>
 
 </RelativeLayout>

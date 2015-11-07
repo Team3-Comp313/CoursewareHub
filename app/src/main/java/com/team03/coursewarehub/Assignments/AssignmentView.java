@@ -75,6 +75,15 @@ public class AssignmentView extends Activity {
 
         });
 
+        //full PDF url as string
+        //String docUrl = "<iframe src='http://docs.google.com/viewer?url=" + url + "' width='100%' height='100%' style='border: none;'></iframe>";
+        WebView assignmentViewer = new WebView(AssignmentView.this);
+        //WebView assignmentViewer = (WebView)findViewById(R.id.assignmentViewer);
+        assignmentViewer.getSettings().setJavaScriptEnabled(true);
+        assignmentViewer.getSettings().setPluginsEnabled(true);
+        assignmentViewer.getSettings().setAllowFileAccess(true);
+        assignmentViewer.loadUrl("http://docs.google.com/viewer?url=" + url);
+        setContentView(assignmentViewer);
     }
 
 }
