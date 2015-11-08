@@ -35,6 +35,14 @@
             android:name=".Handouts.HandoutListActivity"
             android:label="@string/title_activity_handout_list" >
         </activity>
+        <activity
+            android:name=".Assignments.AssignmentView"
+            android:label="@string/title_activity_assignment_view"
+            android:parentActivityName=".Assignments.AssignmentListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.team03.coursewarehub.Assignments.AssignmentListActivity" />
+        </activity>
     </application>
 
 </manifest>
