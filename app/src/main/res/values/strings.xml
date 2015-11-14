@@ -13,4 +13,5 @@
     <string name="title_activity_display">Display</string>
     <string name="title_activity_handout_list">HandoutListActivity</string>
     <string name="title_activity_assignment_view">AssignmentView</string>
+    <string name="title_activity_example_view">ExampleView</string>
 </resources>

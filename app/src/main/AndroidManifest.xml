@@ -43,6 +43,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.team03.coursewarehub.Assignments.AssignmentListActivity" />
         </activity>
+        <activity
+            android:name=".Example.ExampleView"
+            android:label="@string/title_activity_example_view" >
+        </activity>
     </application>
 
 </manifest>
