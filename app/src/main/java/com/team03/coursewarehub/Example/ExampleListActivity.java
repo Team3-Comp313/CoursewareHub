@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -93,17 +95,15 @@ public class ExampleListActivity extends Activity {
         adapter = new ArrayAdapter<String>(this, R.layout.main_search_list_item, R.id.product_name, sampleExample);
         lv.setAdapter(adapter);
 
-        /*
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), VideoDisplay.class);
-                i.putExtra("AssignmentUrl", AssignmentUrl.get(position));
-                i.putExtra("exampleName", sampleAssignments.get(position));
+                Intent i = new Intent(getApplicationContext(), ExampleView.class);
+                i.putExtra("exampleUrl", exampleUrl.get(position));
+                i.putExtra("exampleName", sampleExample.get(position));
                 i.putExtra("courseTitle", courseTitle);
                 startActivity(i);
             }
         });
-        */
     }
 }
