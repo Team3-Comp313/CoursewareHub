@@ -25,10 +25,23 @@ import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.team03.coursewarehub.R;
 
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.TextView;
+import android.widget.Toast;
 public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private static final int RECOVERY_DIALOG_REQUEST = 10;
     public static final String API_KEY = "AIzaSyC29Cn2stiksjnP33HeegXMNCCAoMRzgnc";
     String videoId;
+    private RatingBar ratingBar;
+    private TextView txtRatingValue;
+    private Button btnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +69,7 @@ public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.O
         final String name = intent.getStringExtra("videoName");
 
         //find textview
-        final TextView tv = (TextView)findViewById(R.id.textView);
+        final TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(name);
 
 
@@ -94,6 +107,47 @@ public class VideoDisplay extends YouTubeBaseActivity implements YouTubePlayer.O
 
         YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(API_KEY, this);
+
+        addListenerOnRatingBar();
+        addListenerOnButton();
+    }
+
+    public void addListenerOnRatingBar() {
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        txtRatingValue = (TextView) findViewById(R.id.txtRatingValue);
+
+        //if rating value is changed,
+        //display the current rating value in the result (textview) automatically
+        ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+
+                txtRatingValue.setText(String.valueOf(rating));
+
+            }
+        });
+    }
+
+    public void addListenerOnButton() {
+
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+
+        //if click on me, then display the current rating value.
+        btnSubmit.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(VideoDisplay.this,
+                        String.valueOf(ratingBar.getRating()),
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
     }
 
 //    public String extractYTId(String ytUrl) {
