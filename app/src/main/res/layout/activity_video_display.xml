@@ -34,7 +34,7 @@
             android:id="@+id/textView"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
-            android:textSize="40sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal" />
 
         <com.google.android.youtube.player.YouTubePlayerView
