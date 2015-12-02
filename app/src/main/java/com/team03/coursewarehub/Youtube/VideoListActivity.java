@@ -104,6 +104,7 @@ public class VideoListActivity extends Activity {
                 i.putExtra("videoUrl", videoUrl.get(position));
                 i.putExtra("videoName", sampleVideo.get(position));
                 i.putExtra("courseTitle", courseTitle);
+                i.putExtra("Position", position);
                 startActivity(i);
             }
         });
