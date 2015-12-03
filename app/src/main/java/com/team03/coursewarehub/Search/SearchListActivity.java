@@ -36,7 +36,7 @@ public class SearchListActivity extends Activity {
     int textlength = 0;
 
     // Listview Data
-    String courses[] = {"Java ( The New Boston)", "Java ( Standford )", "Android ( The New Boston)", "Android( Utom )", "Angular",
+    String courses[] = {"Java - The New Boston ", "Java - Standford ", "Android - The New Boston", "Android - Utom ","Android - Hongkong University", "Angular",
             "C#", "Http",
             "Sql", "NoSql", "Dataware", "MacBook Pro"};
 
