@@ -2,6 +2,7 @@ package com.team03.coursewarehub;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.team03.coursewarehub.Search.SearchListActivity;
+import com.team03.coursewarehub.UploadUrl.UploadActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +26,17 @@ public class MainActivity extends Activity {
                 Intent activityCourse = new Intent(MainActivity.this,
                         SearchListActivity.class);
                 MainActivity.this.startActivity(activityCourse);
+                finish();
+            }
+        });
+
+        BootstrapButton btnUpload = (BootstrapButton) findViewById(R.id.btnUpload);
+        btnUpload.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activityUpload = new Intent(MainActivity.this,
+                        UploadActivity.class);
+                MainActivity.this.startActivity(activityUpload);
                 finish();
             }
         });

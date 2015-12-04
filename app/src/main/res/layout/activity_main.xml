@@ -43,6 +43,20 @@
                 app:roundedCorners="true"
                 app:showOutline="false"
                 />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/btnUpload"
+                android:layout_height="40dp"
+                android:layout_width="140dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Upload"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:roundedCorners="true"
+                app:showOutline="false"
+                />
         </LinearLayout>
     </ScrollView>
 
