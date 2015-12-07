@@ -14,4 +14,13 @@
     <string name="title_activity_handout_list">HandoutListActivity</string>
     <string name="title_activity_assignment_view">AssignmentView</string>
     <string name="title_activity_example_view">ExampleView</string>
+    <string name="title_activity_upload">UploadActivity</string>
+
+    <string-array name="resource_type">
+        <item>Please select your material type</item>
+        <item>Videos</item>
+        <item>Assignments</item>
+        <item>Examples</item>
+        <item>Handouts</item>
+    </string-array>
 </resources>
