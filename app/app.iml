@@ -99,5 +99,6 @@
     <orderEntry type="library" exported="" name="firebase-client-android-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="androidbootstrap-2.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />
+    <orderEntry type="library" exported="" name="android-android-16" level="project" />
   </component>
 </module>
