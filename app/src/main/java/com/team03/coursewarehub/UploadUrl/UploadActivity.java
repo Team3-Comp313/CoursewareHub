@@ -2,6 +2,7 @@ package com.team03.coursewarehub.UploadUrl;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Patterns;
@@ -22,6 +23,9 @@ import com.firebase.client.ValueEventListener;
 import com.team03.coursewarehub.MainActivity;
 import com.team03.coursewarehub.R;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class UploadActivity extends Activity {
@@ -163,31 +167,55 @@ public class UploadActivity extends Activity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 } else {
-                    if (Patterns.WEB_URL.matcher(url).matches()) {
-                        // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
+                    if (type.equals("Videos")) {
+                        //if (Patterns.WEB_URL.matcher(url).matches()) {
+                        if (url.length() == 11) {
+                            // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
 
-                        ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
-                        ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
 
-                        Context context = getApplicationContext();
-                        CharSequence text = "Your material is successfully uploaded";
-                        int duration = Toast.LENGTH_SHORT;
+                            Context context = getApplicationContext();
+                            CharSequence text = "Your material is successfully uploaded";
+                            int duration = Toast.LENGTH_SHORT;
 
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
 
-                        Intent activityMain = new Intent(UploadActivity.this,
-                                MainActivity.class);
-                        UploadActivity.this.startActivity(activityMain);
-                        finish();
+                            Intent activityMain = new Intent(UploadActivity.this,
+                                    MainActivity.class);
+                            UploadActivity.this.startActivity(activityMain);
+                            finish();
+                        } else {
+                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                        if (Patterns.WEB_URL.matcher(url).matches()) {
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
+
+                            Context context = getApplicationContext();
+                            CharSequence text = "Your material is successfully uploaded";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                            Intent activityMain = new Intent(UploadActivity.this,
+                                    MainActivity.class);
+                            UploadActivity.this.startActivity(activityMain);
+                            finish();
+
+                            // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                        }
+                        // checkURLExists(url);
                     }
                 }
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -218,5 +246,38 @@ public class UploadActivity extends Activity {
                 MainActivity.class);
         UploadActivity.this.startActivity(activityIntent);
         finish();
+    }
+
+    public void checkURLExists(String URLName) {
+        try {
+            HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
+
+            HttpURLConnection.setFollowRedirects(false);
+            con.setRequestMethod("HEAD");
+            con.connect();
+            if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                Toast.makeText(getBaseContext(), "URL Exist", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getBaseContext(), "URL not Exists", Toast.LENGTH_SHORT).show();
+            }
+        } catch (UnknownHostException unknownHostException) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean exists(String URLName) {
+
+        try {
+            HttpURLConnection.setFollowRedirects(false);
+
+            HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
+            con.setRequestMethod("HEAD");
+            con.connect();
+            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
