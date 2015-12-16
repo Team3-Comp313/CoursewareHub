@@ -2,8 +2,10 @@ package com.team03.coursewarehub.UploadUrl;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,9 @@ import com.firebase.client.ValueEventListener;
 import com.team03.coursewarehub.MainActivity;
 import com.team03.coursewarehub.R;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class UploadActivity extends Activity {
@@ -59,34 +64,32 @@ public class UploadActivity extends Activity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot snapshotChild : snapshot.getChildren()){
+                for (DataSnapshot snapshotChild : snapshot.getChildren()) {
                     topics.add(snapshotChild.getKey());
                 }
             }
+
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
 
-        name_edit = (EditText)findViewById(R.id.name);
+        name_edit = (EditText) findViewById(R.id.name);
         url_edit = (EditText) findViewById(R.id.url);
 
 
         // ListView
         Spinner topic_spinner = (Spinner) findViewById(R.id.topic_spinner);
         topics.add("Please select a topic");
-        ArrayAdapter<String> topic_adapter = new ArrayAdapter<String>(this, R.layout.main_upload_topic_list_item, R.id.topic_items, topics){
+        ArrayAdapter<String> topic_adapter = new ArrayAdapter<String>(this, R.layout.main_upload_topic_list_item, R.id.topic_items, topics) {
             @Override
-            public boolean isEnabled(int position){
-                if(position == 0)
-                {
+            public boolean isEnabled(int position) {
+                if (position == 0) {
                     // Disable the first item from Spinner
                     // First item will be use for hint
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
             }
@@ -105,21 +108,19 @@ public class UploadActivity extends Activity {
         });
 
         final Spinner type_spinner = (Spinner) findViewById(R.id.type_spinner);
-        ArrayAdapter<String> type_adapter = new ArrayAdapter<String>(this, R.layout.main_upload_type_list_item, R.id.type_items, types){
+        ArrayAdapter<String> type_adapter = new ArrayAdapter<String>(this, R.layout.main_upload_type_list_item, R.id.type_items, types) {
             @Override
-            public boolean isEnabled(int position){
-                if(position == 0)
-                {
+            public boolean isEnabled(int position) {
+                if (position == 0) {
                     // Disable the first item from Spinner
                     // First item will be use for hint
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
             }
-        };;
+        };
+        ;
         type_spinner.setAdapter(type_adapter);
         type_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -158,37 +159,63 @@ public class UploadActivity extends Activity {
                 url = url_edit.getText().toString();
                 System.out.println(name);
                 System.out.println(url);
-                if (topic.equals("Please select a topic") || type.equals("Please select the material type") || name.equals("") || url.equals(""))
-                {
+                if (topic.equals("Please select a topic") || type.equals("Please select the material type") || name.equals("") || url.equals("")) {
                     Context context = getApplicationContext();
                     CharSequence text = "Please fill all the fields.";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-                }
-                else {
-                    ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
-                    ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
+                } else {
+                    if (type.equals("Videos")) {
+                        //if (Patterns.WEB_URL.matcher(url).matches()) {
+                        if (url.length() == 11) {
+                            // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
 
-                    Context context = getApplicationContext();
-                    CharSequence text = "Your material is successfully uploaded";
-                    int duration = Toast.LENGTH_SHORT;
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                            Context context = getApplicationContext();
+                            CharSequence text = "Your material is successfully uploaded";
+                            int duration = Toast.LENGTH_SHORT;
 
-                    Intent activityMain = new Intent(UploadActivity.this,
-                            MainActivity.class);
-                    UploadActivity.this.startActivity(activityMain);
-                    finish();
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                            Intent activityMain = new Intent(UploadActivity.this,
+                                    MainActivity.class);
+                            UploadActivity.this.startActivity(activityMain);
+                            finish();
+                        } else {
+                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        if (Patterns.WEB_URL.matcher(url).matches()) {
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
+
+                            Context context = getApplicationContext();
+                            CharSequence text = "Your material is successfully uploaded";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+
+                            Intent activityMain = new Intent(UploadActivity.this,
+                                    MainActivity.class);
+                            UploadActivity.this.startActivity(activityMain);
+                            finish();
+
+                            // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                        }
+                        // checkURLExists(url);
+                    }
                 }
             }
         });
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -219,5 +246,38 @@ public class UploadActivity extends Activity {
                 MainActivity.class);
         UploadActivity.this.startActivity(activityIntent);
         finish();
+    }
+
+    public void checkURLExists(String URLName) {
+        try {
+            HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
+
+            HttpURLConnection.setFollowRedirects(false);
+            con.setRequestMethod("HEAD");
+            con.connect();
+            if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                Toast.makeText(getBaseContext(), "URL Exist", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getBaseContext(), "URL not Exists", Toast.LENGTH_SHORT).show();
+            }
+        } catch (UnknownHostException unknownHostException) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean exists(String URLName) {
+
+        try {
+            HttpURLConnection.setFollowRedirects(false);
+
+            HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
+            con.setRequestMethod("HEAD");
+            con.connect();
+            return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
