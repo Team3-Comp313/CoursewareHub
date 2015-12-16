@@ -1,9 +1,15 @@
 package com.team03.coursewarehub;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.team03.coursewarehub.Search.SearchListActivity;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
@@ -11,6 +17,17 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BootstrapButton btnSearch = (BootstrapButton) findViewById(R.id.btnSearch);
+        btnSearch.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent activityCourse = new Intent(MainActivity.this,
+                        SearchListActivity.class);
+                MainActivity.this.startActivity(activityCourse);
+                finish();
+            }
+        });
     }
 
     @Override

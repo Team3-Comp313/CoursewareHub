@@ -1,6 +1,17 @@
 <resources>
-    <string name="app_name">CoursewareHub</string>
+    <string name="app_name">Courseware Hub</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_search">Search Activity</string>
+    <string name="title_activity_search_second">SearchSecondActivity</string>
+    <string name="title_activity_search_second_you_tube">SearchSecondYouTubeActivity</string>
+    <string name="title_activity_assignment_list">AssignmentListActivity</string>
+    <string name="title_activity_example_list">ExampleListActivity</string>
+    <string name="title_activity_search_list">SearchListActivity</string>
+    <string name="title_activity_search_display">SearchDisplayActivity</string>
+    <string name="title_activity_display">Display</string>
+    <string name="title_activity_handout_list">HandoutListActivity</string>
+    <string name="title_activity_assignment_view">AssignmentView</string>
+    <string name="title_activity_example_view">ExampleView</string>
 </resources>
