@@ -23,4 +23,5 @@
         <item>Examples</item>
         <item>Handouts</item>
     </string-array>
+    <string name="title_activity_comment">CommentActivity</string>
 </resources>
