@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+<<<<<<< HEAD
 import android.os.NetworkOnMainThreadException;
+=======
+import android.util.Patterns;
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -196,6 +200,7 @@ public class UploadActivity extends Activity {
                             Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
+<<<<<<< HEAD
                         MyTask task = new MyTask();
                         task.execute(url);
                         System.out.println("right");
@@ -203,6 +208,10 @@ public class UploadActivity extends Activity {
                         if (validUrl) {
                             //if (exists(url)) {
                             /*ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
+=======
+                        if (Patterns.WEB_URL.matcher(url).matches()) {
+                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
                             ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
 
                             Context context = getApplicationContext();
@@ -215,11 +224,19 @@ public class UploadActivity extends Activity {
                             Intent activityMain = new Intent(UploadActivity.this,
                                     MainActivity.class);
                             UploadActivity.this.startActivity(activityMain);
+<<<<<<< HEAD
                             finish();*/
 
                             // Toast.makeText(UploadActivity.this, "True!", Toast.LENGTH_SHORT).show();
                         } else {
                             // Toast.makeText(UploadActivity.this, "False", Toast.LENGTH_SHORT).show();
+=======
+                            finish();
+
+                            // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
                         }
                         // checkURLExists(url);
                     }
@@ -228,6 +245,7 @@ public class UploadActivity extends Activity {
         });
     }
 
+<<<<<<< HEAD
     public void uploadUrl() {
 
         // Connection to firebase
@@ -256,6 +274,8 @@ public class UploadActivity extends Activity {
         finish();
     }
 
+=======
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -288,7 +308,10 @@ public class UploadActivity extends Activity {
     }
 
     public void checkURLExists(String URLName) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
 
@@ -310,6 +333,7 @@ public class UploadActivity extends Activity {
 
         try {
             HttpURLConnection.setFollowRedirects(false);
+<<<<<<< HEAD
             HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
             con.setRequestMethod("HEAD");
             return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
@@ -340,12 +364,19 @@ class RetrieveFeedTask extends AsyncTask<String, Void, Boolean> {
 
             con.setRequestMethod("HEAD");
             //con.connect();
+=======
+
+            HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
+            con.setRequestMethod("HEAD");
+            con.connect();
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
             return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+<<<<<<< HEAD
 
     protected void onPostExecute(Void feed) {
         // TODO: check this.exception
@@ -403,3 +434,6 @@ class RetrieveFeedTask extends AsyncTask<String, Void, Boolean> {
         }
     }
 }
+=======
+}
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9

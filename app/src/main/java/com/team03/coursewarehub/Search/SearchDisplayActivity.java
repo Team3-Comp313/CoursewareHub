@@ -15,7 +15,6 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.team03.coursewarehub.Assignments.AssignmentListActivity;
-import com.team03.coursewarehub.Comments.CommentActivity;
 import com.team03.coursewarehub.Example.ExampleListActivity;
 import com.team03.coursewarehub.Handouts.HandoutListActivity;
 import com.team03.coursewarehub.R;
@@ -32,7 +31,6 @@ public class SearchDisplayActivity extends Activity {
         final BootstrapButton btnAssignments = (BootstrapButton) findViewById(R.id.btnAssignments);
         final BootstrapButton btnHandouts = (BootstrapButton) findViewById(R.id.btnHandouts);
         final BootstrapButton btnExamples = (BootstrapButton) findViewById(R.id.btnExamples);
-        final BootstrapButton btnComments = (BootstrapButton) findViewById(R.id.btnComments);
 
         // Connection to firebase
         Firebase.setAndroidContext(this);
@@ -113,22 +111,6 @@ public class SearchDisplayActivity extends Activity {
                             @Override
                             public void onClick(View v) {
                                 Intent i = new Intent(getApplicationContext(),ExampleListActivity.class);
-                                i.putExtra("courseTitle", courseTitle);
-                                startActivity(i);
-                            }
-                        });
-                    }
-                }
-                if (dataSnapshot.getKey().toString() == "Comments") {
-                    final String examples = dataSnapshot.getValue().toString();
-                    if (examples.equals("")) {
-                        btnExamples.setVisibility(View.GONE);
-                    } else {
-                        //move to next activity for list of all examples
-                        btnComments.setOnClickListener(new View.OnClickListener(){
-                            @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(getApplicationContext(), CommentActivity.class);
                                 i.putExtra("courseTitle", courseTitle);
                                 startActivity(i);
                             }
