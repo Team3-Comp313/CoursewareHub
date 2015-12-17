@@ -1,15 +1,10 @@
 package com.team03.coursewarehub.UploadUrl;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
-<<<<<<< HEAD
-import android.os.NetworkOnMainThreadException;
-=======
-import android.util.Patterns;
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +27,8 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-public class UploadActivity extends Activity {
+public class ValidateUrl extends Activity {
+
     boolean validUrl = false;
 
     // Listview Data
@@ -56,7 +52,7 @@ public class UploadActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload);
+        setContentView(R.layout.activity_validate_url);
 
         setTitle("Upload Your Material");
 
@@ -181,7 +177,8 @@ public class UploadActivity extends Activity {
                         //if (Patterns.WEB_URL.matcher(url).matches()) {
                         if (url.length() == 11) {
                             // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
-
+                            //Intent intent = new Intent(this, UploadActivity.class);
+                            //startActivity(intent);
                             ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
                             ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
 
@@ -192,26 +189,21 @@ public class UploadActivity extends Activity {
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
 
-                            Intent activityMain = new Intent(UploadActivity.this,
+                            Intent activityMain = new Intent(ValidateUrl.this,
                                     MainActivity.class);
-                            UploadActivity.this.startActivity(activityMain);
+                            ValidateUrl.this.startActivity(activityMain);
                             finish();
                         } else {
-                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ValidateUrl.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-<<<<<<< HEAD
                         MyTask task = new MyTask();
                         task.execute(url);
                         System.out.println("right");
 
                         if (validUrl) {
                             //if (exists(url)) {
-                            /*ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
-=======
-                        if (Patterns.WEB_URL.matcher(url).matches()) {
-                            ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
+                           /* ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
                             ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
 
                             Context context = getApplicationContext();
@@ -224,19 +216,11 @@ public class UploadActivity extends Activity {
                             Intent activityMain = new Intent(UploadActivity.this,
                                     MainActivity.class);
                             UploadActivity.this.startActivity(activityMain);
-<<<<<<< HEAD
                             finish();*/
 
                             // Toast.makeText(UploadActivity.this, "True!", Toast.LENGTH_SHORT).show();
                         } else {
                             // Toast.makeText(UploadActivity.this, "False", Toast.LENGTH_SHORT).show();
-=======
-                            finish();
-
-                            // Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
                         }
                         // checkURLExists(url);
                     }
@@ -245,37 +229,6 @@ public class UploadActivity extends Activity {
         });
     }
 
-<<<<<<< HEAD
-    public void uploadUrl() {
-
-        // Connection to firebase
-        Firebase.setAndroidContext(this);
-        String baseurl = "https://team03-coursewarehub.firebaseio.com/";
-        final Firebase ref = new Firebase(baseurl);
-
-        ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Name").setValue(name);
-        ref.child(topic).child(type).child(Integer.toString(firebaseIdx)).child("Url").setValue(url);
-
-        System.out.println(topic);
-        System.out.println(type);
-        System.out.println(name);
-        System.out.println(url);
-
-        Context context = getApplicationContext();
-        CharSequence text = "Your material is successfully uploaded";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-        Intent activityMain = new Intent(UploadActivity.this,
-                MainActivity.class);
-        UploadActivity.this.startActivity(activityMain);
-        finish();
-    }
-
-=======
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -301,17 +254,13 @@ public class UploadActivity extends Activity {
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        Intent activityIntent = new Intent(UploadActivity.this,
+        Intent activityIntent = new Intent(ValidateUrl.this,
                 MainActivity.class);
-        UploadActivity.this.startActivity(activityIntent);
+        ValidateUrl.this.startActivity(activityIntent);
         finish();
     }
 
     public void checkURLExists(String URLName) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
 
@@ -333,7 +282,6 @@ public class UploadActivity extends Activity {
 
         try {
             HttpURLConnection.setFollowRedirects(false);
-<<<<<<< HEAD
             HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
             con.setRequestMethod("HEAD");
             return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
@@ -342,6 +290,8 @@ public class UploadActivity extends Activity {
             return false;
         }
     }
+
+
 /*
 class RetrieveFeedTask extends AsyncTask<String, Void, Boolean> {
 
@@ -364,19 +314,12 @@ class RetrieveFeedTask extends AsyncTask<String, Void, Boolean> {
 
             con.setRequestMethod("HEAD");
             //con.connect();
-=======
-
-            HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
-            con.setRequestMethod("HEAD");
-            con.connect();
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
             return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-<<<<<<< HEAD
 
     protected void onPostExecute(Void feed) {
         // TODO: check this.exception
@@ -424,16 +367,13 @@ class RetrieveFeedTask extends AsyncTask<String, Void, Boolean> {
             boolean bResponse = result;
 
             if (bResponse) {
-                uploadUrl();
                 //Toast.makeText(UploadActivity.this, "Valid!", Toast.LENGTH_SHORT).show();
                 validUrl = true;
             } else {
-                Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(UploadActivity.this, "Invalid Url!", Toast.LENGTH_SHORT).show();
                 validUrl = false;
             }
         }
+
     }
 }
-=======
-}
->>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9

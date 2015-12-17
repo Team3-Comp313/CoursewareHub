@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.team03.coursewarehub" >
+    package="com.team03.coursewarehub">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -8,10 +8,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,31 +24,37 @@
         <activity
             android:name=".Search.SearchDisplayActivity"
             android:label="@string/title_activity_search_second" />
-        <activity android:name=".Youtube.VideoDisplay" />
+        <activity android:name=".Youtube.VideoDisplay"></activity>
         <activity android:name=".Youtube.VideoListActivity" />
-        <activity android:name=".Example.ExampleListActivity" />
-        <activity android:name=".Assignments.AssignmentListActivity" />
+        <activity android:name=".Example.ExampleListActivity"></activity>
+        <activity android:name=".Assignments.AssignmentListActivity"></activity>
         <activity
             android:name=".Handouts.HandoutListActivity"
-            android:label="@string/title_activity_handout_list" />
+            android:label="@string/title_activity_handout_list"></activity>
         <activity
             android:name=".Assignments.AssignmentView"
             android:label="@string/title_activity_assignment_view"
-            android:parentActivityName=".Assignments.AssignmentListActivity" >
+            android:parentActivityName=".Assignments.AssignmentListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.team03.coursewarehub.Assignments.AssignmentListActivity" />
         </activity>
         <activity
             android:name=".Example.ExampleView"
-            android:label="@string/title_activity_example_view" />
+            android:label="@string/title_activity_example_view"></activity>
         <activity
             android:name=".UploadUrl.UploadActivity"
+<<<<<<< HEAD
             android:label="@string/title_activity_upload" />
         <activity
             android:name=".Comments.CommentActivity"
             android:label="@string/title_activity_comment" >
         </activity>
+        <activity android:name=".UploadUrl.ValidateUrl" >
+        </activity>
+=======
+            android:label="@string/title_activity_upload"></activity>
+>>>>>>> 94805ad8acd5aa998311883fdae1b632bdbfebd9
     </application>
 
 </manifest>

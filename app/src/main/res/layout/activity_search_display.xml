@@ -86,20 +86,6 @@
                 app:showOutline="false"
                 />
 
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/btnComments"
-                android:layout_width="200dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="Comments"
-                app:bootstrapBrand="primary"
-                app:bootstrapSize="lg"
-                app:buttonMode="regular"
-                app:roundedCorners="true"
-                app:showOutline="false"
-                />
-
         </LinearLayout>
     </ScrollView>
 
