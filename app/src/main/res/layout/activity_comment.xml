@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context="com.team03.coursewarehub.Youtube.VideoDisplay">
+
+<ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:id="@+id/wrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/imgHeader"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Comments:"
+                android:id="@+id/textView2" />
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listViewComment" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="18dp"
+                    android:text="Comment:"/>
+                <com.beardedhen.androidbootstrap.BootstrapEditText
+                    android:layout_width="fill_parent"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/commentEditText"
+                    app:roundedCorners="true"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="User Name:"/>
+                <com.beardedhen.androidbootstrap.BootstrapEditText
+                    android:layout_width="fill_parent"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/usernameEditText"
+                    app:roundedCorners="true"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="46dp"
+                    android:text="Email:"/>
+                <com.beardedhen.androidbootstrap.BootstrapEditText
+                    android:layout_width="fill_parent"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/emailEditText"
+                    app:roundedCorners="true"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="68dp">
+
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/btnPost"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Post"
+                    app:bootstrapBrand="success"
+                    app:bootstrapSize="lg"
+                    app:buttonMode="regular"
+                    app:roundedCorners="true"
+                    app:showOutline="false"
+                    />
+
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/btnCancel"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Cancel"
+                    app:bootstrapBrand="success"
+                    app:bootstrapSize="lg"
+                    app:buttonMode="regular"
+                    app:roundedCorners="true"
+                    app:showOutline="false" />
+            </TableRow>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
